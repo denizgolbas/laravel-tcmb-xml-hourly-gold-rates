@@ -111,12 +111,12 @@ class GoldService
                     $code = (string) $kur->doviz_cinsi;
                     
                     // Support both gold types from TCMB
-                    // XAU = 9999'luk Altın (sira_no: 9999)
-                    // XAS = 9998'lik Altın / Has Altın (sira_no: 9998)
+                    // XAU = 24 Ayar Altın
+                    // XAS = SAF (Has) Altın
                     
                     $goldTypes = [
-                        'XAU' => '9999\'luk Altın',
-                        'XAS' => '9998\'lik Altın (Has Altın - 24 Ayar)',
+                        'XAU' => '24 Ayar Altın',
+                        'XAS' => 'SAF (Has) Altın',
                     ];
                     
                     if (array_key_exists($code, $goldTypes)) {

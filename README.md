@@ -12,16 +12,16 @@ Bu paket TCMB'nin saatlik yayınladığı **Reeskont Kurları** XML servisini ku
 
 TCMB Reeskont Kurları XML servisinde aşağıdaki altın türleri bulunmaktadır:
 
-| Kod | Açıklama | Birim | Kullanım Alanı | XML'deki Sıra No |
-|-----|----------|-------|----------------|------------------|
-| `XAU` | 9999'luk Altın | 1 | TCMB tarafından belirlenen altın fiyatı | 9999 |
-| `XAS` | 9998'lik Altın (Has Altın - 24 Ayar) | 1 gram | Türkiye'deki kuyumculuk sektöründe referans fiyat | 9998 |
+| Kod | Açıklama | Birim | Kullanım Alanı |
+|-----|----------|-------|----------------|
+| `XAU` | 24 Ayar Altın | 1 | TCMB tarafından belirlenen altın fiyatı |
+| `XAS` | SAF (Has) Altın | 1 gram | Türkiye'deki kuyumculuk sektöründe referans fiyat |
 
 ### XAU vs XAS Farkı
 
-- **XAU (9999'luk Altın)**: TCMB tarafından belirlenen altın fiyatıdır. XML'de `sira_no="9999"` ile işaretlenir.
+- **XAU (24 Ayar Altın)**: TCMB tarafından belirlenen 24 ayar altın fiyatıdır.
 
-- **XAS (9998'lik Altın / Has Altın)**: TCMB'nin hesapladığı 1 gram saf (24 ayar) altın fiyatıdır. Türkiye'deki kuyumculuk sektöründe referans olarak kullanılır. XML'de `sira_no="9998"` ile işaretlenir.
+- **XAS (SAF / Has Altın)**: TCMB'nin hesapladığı 1 gram saf (has) altın fiyatıdır. Türkiye'deki kuyumculuk sektöründe referans olarak kullanılır.
 
 ### XML'de Dönen Tüm Alanlar
 
@@ -31,7 +31,6 @@ TCMB XML'inde her altın türü için aşağıdaki bilgiler döner:
 - `doviz_cinsi`: Altın kodu (XAU veya XAS)
 - `birim`: Birim değeri (her zaman 1)
 - `alis`: Alış fiyatı (TL cinsinden, virgülle ayrılmış)
-- `sira_no`: Sıra numarası (XAU: 9999, XAS: 9998)
 
 **Not:** TCMB Reeskont Kurları XML'inde sadece **alış fiyatı** bulunur, satış fiyatı yoktur.
 
@@ -40,7 +39,7 @@ TCMB XML'inde her altın türü için aşağıdaki bilgiler döner:
 - 🏦 **TCMB Reeskont Kurları** - Resmi altın fiyatları
   ```php
   $rates = TcmbGold::all();
-  // XAU (9999'luk) ve XAS (9998'lik) altın fiyatlarını getirir
+  // XAU (24 Ayar) ve XAS (SAF/Has) altın fiyatlarını getirir
   ```
 
 - ⏰ **Saatlik Güncelleme** - Gün içinde 12:00, 14:00, 16:00 saatlerinde kontrol
@@ -75,7 +74,8 @@ TCMB XML'inde her altın türü için aşağıdaki bilgiler döner:
 - 🧪 **Matrix Testler** - PHP 8.1/8.2/8.3 + Laravel 10/11
   ```bash
   # GitHub Actions'da otomatik test edilir
-  # 6 farklı kombinasyon: PHP 8.1/8.2/8.3 × Laravel 10/11
+  # 5 farklı kombinasyon: PHP 8.1 (L10), PHP 8.2/8.3 (L10+L11)
+  # Not: Laravel 11 PHP 8.2+ gerektirir
   ```
 
 ## 📦 Kurulum
@@ -112,20 +112,20 @@ foreach ($rates as $gold) {
     echo "{$gold['name']}: {$gold['buying']} TL\n";
 }
 // Output:
-// 9999'luk Altın: 5734.7 TL
-// 9998'lik Altın (Has Altın - 24 Ayar): 5763.52 TL
+// 24 Ayar Altın: 5734.7 TL
+// SAF (Has) Altın: 5763.52 TL
 ```
 
 ### Belirli Altın Türünü Alma
 
 ```php
-// 9998'lik Altın (Has Altın - gram fiyatı)
+// SAF (Has) Altın (gram fiyatı)
 $hasAltin = $rates->firstWhere('code', 'XAS');
 echo "1 gram saf altın: {$hasAltin['buying']} TL";
 
-// 9999'luk Altın
+// 24 Ayar Altın
 $xau = $rates->firstWhere('code', 'XAU');
-echo "9999'luk altın: {$xau['buying']} TL";
+echo "24 ayar altın: {$xau['buying']} TL";
 ```
 
 ### Belirli Bir Tarih İçin
@@ -143,7 +143,7 @@ $rates = TcmbGold::all($date);
 [
     [
         'code' => 'XAU',
-        'name' => '9999\'luk Altın',
+        'name' => '24 Ayar Altın',
         'buying' => 5734.70,
         'unit' => 1,
         'date' => '2025-12-09',
@@ -151,7 +151,7 @@ $rates = TcmbGold::all($date);
     ],
     [
         'code' => 'XAS',
-        'name' => '9998\'lik Altın (Has Altın - 24 Ayar)',
+        'name' => 'SAF (Has) Altın',
         'buying' => 5763.52,
         'unit' => 1,
         'date' => '2025-12-09',
@@ -255,8 +255,8 @@ TCMB XML'inde dönen tam yapı:
 ```
 
 **XML'de Dönen Tüm Altın Türleri:**
-- `XAU` - 9999'luk Altın - Sıra No: 9999
-- `XAS` - 9998'lik Altın (Has Altın - 24 Ayar) - Sıra No: 9998
+- `XAU` - 24 Ayar Altın
+- `XAS` - SAF (Has) Altın
 
 **Not:** TCMB Reeskont Kurları XML'inde sadece bu iki altın türü bulunmaktadır. Diğer değerli metaller (gümüş, platin, paladyum) bu serviste yer almaz.
 
@@ -270,9 +270,11 @@ TCMB XML'inde dönen tam yapı:
 
 | PHP | Laravel 10 | Laravel 11 |
 |-----|------------|------------|
-| 8.1 | ✅ | ✅ |
+| 8.1 | ✅ | ❌ (PHP 8.2+ gerekli) |
 | 8.2 | ✅ | ✅ |
 | 8.3 | ✅ | ✅ |
+
+**Not:** Laravel 11 PHP 8.2 veya üzeri gerektirir, bu yüzden PHP 8.1 ile Laravel 11 test edilmez.
 
 ## 📄 Lisans
 
