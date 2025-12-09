@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+.env
+.DS_Store
+.idea
+.vscode
+phpunit.xml
+/testbench
+cobertura.xml
+.phpunit.cache

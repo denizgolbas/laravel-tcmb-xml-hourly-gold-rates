@@ -1,0 +1,60 @@
+{
+    "name": "denizgolbas/laravel-tcmb-gold",
+    "description": "TCMB XML Gold Rates Package for Laravel - TCMB Reeskont Kurları XML servisinden altın fiyatlarını çeken Laravel paketi",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "tcmb",
+        "gold",
+        "altın",
+        "xau",
+        "xas",
+        "türkiye",
+        "merkez-bankası",
+        "xml",
+        "exchange-rates"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Deniz Golbas",
+            "email": "info@denizgolbas.com"
+        }
+    ],
+    "homepage": "https://github.com/denizgolbas/laravel-tcmb-gold",
+    "support": {
+        "issues": "https://github.com/denizgolbas/laravel-tcmb-gold/issues",
+        "source": "https://github.com/denizgolbas/laravel-tcmb-gold"
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DenizTezc\\TcmbGold\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DenizTezc\\TcmbGold\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DenizTezc\\TcmbGold\\TcmbGoldServiceProvider"
+            ],
+            "aliases": {
+                "TcmbGold": "DenizTezc\\TcmbGold\\Facades\\TcmbGold"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
