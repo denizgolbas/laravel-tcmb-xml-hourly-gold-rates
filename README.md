@@ -1,6 +1,9 @@
 # Laravel TCMB XML Gold Rates
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/denizgolbas/laravel-tcmb-gold.svg?style=flat-square)](https://packagist.org/packages/denizgolbas/laravel-tcmb-gold)
+[![Total Downloads](https://img.shields.io/packagist/dt/denizgolbas/laravel-tcmb-gold.svg?style=flat-square)](https://packagist.org/packages/denizgolbas/laravel-tcmb-gold)
 [![Run Tests](https://github.com/denizgolbas/laravel-tcmb-gold/actions/workflows/run-tests.yml/badge.svg)](https://github.com/denizgolbas/laravel-tcmb-gold/actions)
+[![License](https://img.shields.io/packagist/l/denizgolbas/laravel-tcmb-gold.svg?style=flat-square)](https://packagist.org/packages/denizgolbas/laravel-tcmb-gold)
 
 TCMB (Türkiye Cumhuriyet Merkez Bankası) Reeskont Kurları XML servisinden altın fiyatlarını çeken Laravel paketi.
 
